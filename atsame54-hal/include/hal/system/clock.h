@@ -1,0 +1,6 @@
+#ifndef HAL_SYSTEM_CLOCK_H_
+#define HAL_SYSTEM_CLOCK_H_
+
+
+
+#endif // HAL_SYSTEM_CLOCK_H_

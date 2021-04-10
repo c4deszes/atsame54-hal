@@ -1,6 +1,4 @@
-#
 # Core library
-#
 add_library(
 	Core
 	${CMAKE_CURRENT_SOURCE_DIR}/src/startup_same54p20a.c
