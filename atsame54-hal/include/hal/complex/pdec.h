@@ -3,8 +3,8 @@
  * @author Balazs Eszes
  * @brief Position Decoder interface 
  */
-#ifndef HAL_COMPLEX_PDEC_H_
-#define HAL_COMPLEX_PDEC_H_
+#ifndef ATSAME54_HAL_INCLUDE_HAL_COMPLEX_PDEC_H_
+#define ATSAME54_HAL_INCLUDE_HAL_COMPLEX_PDEC_H_
 
 #include <stdint.h>
 
@@ -115,4 +115,4 @@ uint16_t PDEC_GetPosition(void);
  */
 uint16_t PDEC_GetRevolutions(void);
 
-#endif // HAL_COMPLEX_PDEC_H_
+#endif  // ATSAME54_HAL_INCLUDE_HAL_COMPLEX_PDEC_H_

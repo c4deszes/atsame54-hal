@@ -3,8 +3,8 @@
  * @author Balazs Eszes
  * @brief External Interrupt Controller interface
  */
-#ifndef HAL_IO_EIC_H_
-#define HAL_IO_EIC_H_
+#ifndef ATSAME54_HAL_INCLUDE_HAL_IO_EIC_H_
+#define ATSAME54_HAL_INCLUDE_HAL_IO_EIC_H_
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -12,12 +12,7 @@
 typedef enum {
     GENERIC,
     LOW_POWER
-} eic_clock_selection;
-
-typedef struct {
-    uint8_t gclk;
-
-} eic_configuration;
+} eic_clock_source;
 
 typedef enum {
     NONE = 0x00,
@@ -43,21 +38,30 @@ typedef struct {
     eic_callback callback;
 } eic_nmi_configuration;
 
+typedef struct {
+    eic_clock_source clock_selection;
+    uint8_t gclk;
+    eic_nmi_configuration nmi;
+    eic_pin_configuration 
+} eic_configuration;
+
 /**
  * @brief Initializes the External Interrupt Controller
  */
-void EIC_Initialize(void);
+void EIC_Initialize(const eic_configuration* conf);
 
 /**
  * @brief 
  * 
  * @param pin 
- * @param conf 
  */
-void EIC_SetupPin(uint8_t pin, const eic_pin_configuration* conf);
-
 void EIC_EnableInterrupt(uint8_t pin);
 
+/**
+ * @brief 
+ * 
+ * @param pin 
+ */
 void EIC_DisableInterrupt(uint8_t pin);
 
-#endif // HAL_IO_EIC_H_
+#endif  // ATSAME54_HAL_INCLUDE_HAL_IO_EIC_H_

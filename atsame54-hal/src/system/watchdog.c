@@ -2,21 +2,20 @@
  * @file watchdog.c
  * @author Balazs Eszes
  * @brief Watchdog implementation
- * 
- * @todo Replace all 0 with NULL macro
  */
 #include "hal/system/watchdog.h"
 
+#include <stddef.h>
 #include "device/same54p20a.h"
 
-wdt_ew_callback wdt_ew_handle = 0;
+wdt_ew_callback wdt_ew_handle = NULL;
 
 void WDT_InitializeNormal(const wdt_normal_configuration* wdt_conf) {
     /* Configure watchdog period */
     WDT_REGS->WDT_CONFIG = wdt_conf->period & WDT_CONFIG_PER_Msk;
     WDT_REGS->WDT_EWCTRL = (wdt_conf->ew_period & WDT_EWCTRL_EWOFFSET_Msk);
 
-    if(wdt_conf->ew_callback != 0) {
+    if (wdt_conf->ew_callback != NULL) {
         WDT_EnableInterrupt(wdt_conf->ew_callback);
     }
 
@@ -34,7 +33,7 @@ void WDT_InitializeWindow(const wdt_window_configuration* wdt_conf) {
                             | (wdt_conf->open & WDT_CONFIG_PER_Msk);
     WDT_REGS->WDT_EWCTRL = (wdt_conf->ew_period & WDT_EWCTRL_EWOFFSET_Msk);
 
-    if(wdt_conf->ew_callback != 0) {
+    if (wdt_conf->ew_callback != NULL) {
         WDT_EnableInterrupt(wdt_conf->ew_callback);
     }
 
@@ -48,7 +47,7 @@ void WDT_InitializeWindow(const wdt_window_configuration* wdt_conf) {
 
 void WDT_EnableInterrupt(wdt_ew_callback handle) {
     wdt_ew_handle = handle;
-    
+
     /* Enable interrupt in peripheral and NVIC controllers */
     WDT_REGS->WDT_INTENSET = WDT_INTENSET_EW_Msk;
     NVIC_EnableIRQ(WDT_IRQn);
@@ -59,7 +58,7 @@ void WDT_DisableInterrupt(void) {
     WDT_REGS->WDT_INTENCLR = WDT_INTENCLR_EW_Msk;
     NVIC_DisableIRQ(WDT_IRQn);
 
-    wdt_ew_handle = 0;
+    wdt_ew_handle = NULL;
 }
 
 void WDT_Disable(void) {
@@ -89,7 +88,7 @@ void WDT_Handler(void) {
     WDT_REGS->WDT_INTFLAG = WDT_INTFLAG_EW_Msk;
 
     /* Call Watchdog Early Warning handler */
-    if (wdt_ew_handle != 0) {
+    if (wdt_ew_handle != NULL) {
         wdt_ew_handle();
     }
 }

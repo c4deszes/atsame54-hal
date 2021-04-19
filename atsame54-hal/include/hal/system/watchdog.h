@@ -3,8 +3,8 @@
  * @author Balazs Eszes
  * @brief Watchdog interface
  */
-#ifndef HAL_SYSTEM_WATCHDOG_H_
-#define HAL_SYSTEM_WATCHDOG_H_
+#ifndef ATSAME54_HAL_INCLUDE_HAL_SYSTEM_WATCHDOG_H_
+#define ATSAME54_HAL_INCLUDE_HAL_SYSTEM_WATCHDOG_H_
 
 #include <stdbool.h>
 
@@ -99,4 +99,4 @@ void WDT_Acknowledge(void);
  */
 void WDT_SelfReset(void);
 
-#endif // HAL_SYSTEM_WATCHDOG_H_
+#endif  // ATSAME54_HAL_INCLUDE_HAL_SYSTEM_WATCHDOG_H_

@@ -3,8 +3,8 @@
  * @author Balazs Eszes
  * @brief General Purpose Input Output interface
  */
-#ifndef ATSAME54_HAL_INCLUDE_HAL_GPIO_H_
-#define ATSAME54_HAL_INCLUDE_HAL_GPIO_H_
+#ifndef ATSAME54_HAL_INCLUDE_HAL_IO_GPIO_H_
+#define ATSAME54_HAL_INCLUDE_HAL_IO_GPIO_H_
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -168,6 +168,14 @@ void GPIO_GroupWrite(uint8_t group, uint32_t value);
 void GPIO_PinWrite(uint8_t group, uint8_t pin, gpio_state value);
 
 /**
+ * @brief Toggle the output state of the given pin
+ * 
+ * @param group Port group number, eg. #PORT_GROUP_A
+ * @param pin Pin number, eg. 12
+ */
+void GPIO_PinToggle(uint8_t group, uint8_t pin);
+
+/**
  * @brief Sets the port registers of the group with the given mask
  * 
  * @param group Port group number eg. #PORT_GROUP_A
@@ -191,4 +199,4 @@ void GPIO_GroupClear(uint8_t group, uint32_t mask);
  */
 void GPIO_GroupToggle(uint8_t group, uint32_t mask);
 
-#endif  // ATSAME54_HAL_INCLUDE_HAL_GPIO_H_
+#endif  // ATSAME54_HAL_INCLUDE_HAL_IO_GPIO_H_

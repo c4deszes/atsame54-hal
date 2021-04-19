@@ -63,7 +63,11 @@ inline void GPIO_SetupPinOutput(uint8_t group, uint8_t pin, const gpio_pin_outpu
 }
 
 inline void GPIO_EnableFunction(uint8_t group, uint8_t pin, uint8_t pmux) {
-    PORT_REGS->GROUP[group].PORT_PMUX[pmux / 2] = 0;
+    if (pin % 2 == 0) {
+        PORT_REGS->GROUP[group].PORT_PMUX[pin / 2] = (PORT_REGS->GROUP[group].PORT_PMUX[pin / 2] & (0xF0)) | (pmux & 0x0F);
+    } else {
+        PORT_REGS->GROUP[group].PORT_PMUX[pin / 2] = (PORT_REGS->GROUP[group].PORT_PMUX[pin / 2] & (0x0F)) | (pmux << 4 & 0xF0);
+    }
     PORT_REGS->GROUP[group].PORT_PINCFG[pin] |= PORT_PINCFG_PMUXEN_Msk;
 }
 
@@ -86,10 +90,13 @@ inline void GPIO_GroupWrite(uint8_t group, uint32_t value) {
 inline void GPIO_PinWrite(uint8_t group, uint8_t pin, gpio_state value) {
     if (value == LOW) {
         GPIO_GroupClear(group, (1 << pin));
-    }
-    else if (value == HIGH) {
+    } else if (value == HIGH) {
         GPIO_GroupSet(group, (1 << pin));
     }
+}
+
+inline void GPIO_PinToggle(uint8_t group, uint8_t pin) {
+    GPIO_GroupToggle(group, (1 << pin));
 }
 
 inline void GPIO_GroupSet(uint8_t group, uint32_t mask) {

@@ -7,6 +7,7 @@
 
 #define SW0_PORT PORT_GROUP_B
 #define SW0_PIN 31
+#define SW0_EXTINT_ID 15
 
 /**
  * @brief User LED0 configuration
@@ -28,8 +29,24 @@ void Xplained_UserLed_InitializeDigital(void) {
     GPIO_SetupPinOutput(LED0_PORT, LED0_PIN, &led0);
 }
 
+void Xplained_UserLed_InitializePwm(void) {
+
+}
+
+void Xplained_UserLed_On(void) {
+    Xplained_UserLed_Set(true);
+}
+
+void Xplained_UserLed_Off(void) {
+    Xplained_UserLed_Set(false);
+}
+
 void Xplained_UserLed_Set(bool enabled) {
-    GPIO_PinWrite(LED0_PIN, LED0_PIN, enabled ? HIGH : LOW);
+    GPIO_PinWrite(LED0_PORT, LED0_PIN, enabled ? LOW : HIGH);
+}
+
+void Xplained_UserLed_Toggle(void) {
+    GPIO_PinToggle(LED0_PORT, LED0_PIN);
 }
 
 void Xplained_UserButton_Initialize(void) {
@@ -37,5 +54,5 @@ void Xplained_UserButton_Initialize(void) {
 }
 
 bool Xplained_UserButton_Read(void) {
-    return GPIO_PinRead(SW0_PORT, SW0_PIN) == HIGH ? true : false;
+    return GPIO_PinRead(SW0_PORT, SW0_PIN) == HIGH ? false : true;
 }
