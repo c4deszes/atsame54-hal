@@ -1,0 +1,6 @@
+#if !defined(ATSAME54_EXAMPLE_INCLUDE_APP_VERSION_H_)
+#define ATSAME54_EXAMPLE_INCLUDE_APP_VERSION_H_
+
+extern const char app_version[16];
+
+#endif // ATSAME54_EXAMPLE_INCLUDE_APP_VERSION_H_

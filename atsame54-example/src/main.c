@@ -1,6 +1,5 @@
-#include "xplained/io/user_io.h"
-
 #include "xplained/board/init.h"
+#include "xplained/io/user_io.h"
 
 int main() {
 

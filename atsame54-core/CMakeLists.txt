@@ -1,3 +1,8 @@
+project(
+    atsame54-core
+    VERSION "1.0.0"
+)
+
 # ATSAME54 Core interface
 add_library(
     atsame54-core-api
@@ -9,9 +14,9 @@ target_compile_options(atsame54-core-api INTERFACE "-mcpu=cortex-m4" "-gdwarf-2"
 
 # ATSAME54 Core library
 add_library(
-	atsame54-core
-	${CMAKE_CURRENT_SOURCE_DIR}/src/startup_same54p20a.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/system_same54p20a.c
+    atsame54-core
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/startup_same54p20a.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/system_same54p20a.c
 )
 target_link_options(atsame54-core PUBLIC "-mcpu=cortex-m4" "-mthumb")
 target_link_libraries(atsame54-core PUBLIC atsame54-core-api)

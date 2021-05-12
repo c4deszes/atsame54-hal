@@ -1,3 +1,8 @@
+project(
+    atsame54-xplained
+    VERSION "0.1.0"
+)
+
 # ATSAME54 Xplained Pro board interface
 add_library(
     atsame54-xplained-api

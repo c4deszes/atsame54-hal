@@ -1,3 +1,8 @@
+project(
+    atsame54-hal
+    VERSION "0.1.0"
+)
+
 # Hardware Abstraction Layer interface
 add_library(
     atsame54-hal-api

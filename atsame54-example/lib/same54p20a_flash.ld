@@ -98,6 +98,12 @@ SECTIONS
         _efixed = .;            /* End of text section */
     } > rom
 
+    .metainformation :
+    {
+        /* . = . + (LENGTH(rom) - SIZEOF(.text) - 32); */
+        KEEP (*(.app_version))
+    } > rom
+
     /* .ARM.exidx is sorted, so has to go in its own output section.  */
     PROVIDE_HIDDEN (__exidx_start = .);
     .ARM.exidx :
