@@ -1,0 +1,6 @@
+/**
+ * Generated source file
+ */
+#include "app/metainformation.h"
+
+__attribute__ ((used, section (".app_version"))) const char app_version[16] = "@PROJECT_VERSION@";

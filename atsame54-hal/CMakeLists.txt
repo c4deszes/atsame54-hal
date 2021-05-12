@@ -1,9 +1,25 @@
-# Create library
-add_library(
-	Hal
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/mcu.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/gpio.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/pdec.c
+project(
+    atsame54-hal
+    VERSION "0.1.0"
 )
-target_link_libraries(Hal PUBLIC Core)
-target_include_directories(Hal PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# Hardware Abstraction Layer interface
+add_library(
+    atsame54-hal-api
+    INTERFACE
+)
+target_include_directories(atsame54-hal-api INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# Hardware Abstraction Layer implementation
+add_library(
+    atsame54-hal
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/system/clock.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/system/mcu.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/system/watchdog.c
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/io/eic.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/io/gpio.c
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/complex/pdec.c
+)
+target_link_libraries(atsame54-hal PUBLIC atsame54-core atsame54-hal-api)
