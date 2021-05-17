@@ -1,4 +1,4 @@
 General Purpose Input Output
 ============================
 
-.. doxygenfile:: hal/gpio.h
+.. doxygenfile:: hal/io/gpio.h

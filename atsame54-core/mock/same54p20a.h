@@ -570,13 +570,28 @@ void SDHC1_Handler                 ( void );
 #define __ARCH_ARM_CORTEX_M            1
 #define __DEVICE_IS_SAM                1
 
-/*
- * \brief CMSIS includes
- */
-#include "core_cm4.h"
-#if defined USE_CMSIS_INIT
-#include "system_same54.h"
-#endif /* USE_CMSIS_INIT */
+#ifdef __cplusplus
+  #define   __I     volatile             /*!< Defines 'read only' permissions */
+#else
+  #define   __I     volatile const       /*!< Defines 'read only' permissions */
+#endif
+#define     __O     volatile             /*!< Defines 'write only' permissions */
+#define     __IO    volatile             /*!< Defines 'read / write' permissions */
+
+/* following defines should be used for structure members */
+#define     __IM     volatile const      /*! Defines 'read only' structure member permissions */
+#define     __OM     volatile            /*! Defines 'write only' structure member permissions */
+#define     __IOM    volatile            /*! Defines 'read / write' structure member permissions */
+
+void NVIC_EnableIRQ(IRQn_Type IRQn);
+
+uint32_t NVIC_GetEnableIRQ(IRQn_Type IRQn);
+
+void NVIC_DisableIRQ(IRQn_Type IRQn);
+
+uint32_t NVIC_GetPendingIRQ(IRQn_Type IRQn);
+
+void NVIC_SetPendingIRQ(IRQn_Type IRQn);
 
 /** \defgroup SAME54P20A_api Peripheral Software API
  *  @{
@@ -703,65 +718,126 @@ void SDHC1_Handler                 ( void );
 /*   REGISTER STRUCTURE ADDRESS DEFINITIONS FOR SAME54P20A                    */
 /* ************************************************************************** */
 #if !(defined(__ASSEMBLER__) || defined(__IAR_SYSTEMS_ASM__))
-#define AC_REGS                          ((ac_registers_t*)0x42002000)                 /**< \brief AC Registers Address         */
-#define ADC0_REGS                        ((adc_registers_t*)0x43001c00)                /**< \brief ADC0 Registers Address       */
-#define ADC1_REGS                        ((adc_registers_t*)0x43002000)                /**< \brief ADC1 Registers Address       */
-#define AES_REGS                         ((aes_registers_t*)0x42002400)                /**< \brief AES Registers Address        */
-#define CAN0_REGS                        ((can_registers_t*)0x42000000)                /**< \brief CAN0 Registers Address       */
-#define CAN1_REGS                        ((can_registers_t*)0x42000400)                /**< \brief CAN1 Registers Address       */
-#define CCL_REGS                         ((ccl_registers_t*)0x42003800)                /**< \brief CCL Registers Address        */
-#define CMCC_REGS                        ((cmcc_registers_t*)0x41006000)               /**< \brief CMCC Registers Address       */
-#define DAC_REGS                         ((dac_registers_t*)0x43002400)                /**< \brief DAC Registers Address        */
-#define DMAC_REGS                        ((dmac_registers_t*)0x4100a000)               /**< \brief DMAC Registers Address       */
-#define DSU_REGS                         ((dsu_registers_t*)0x41002000)                /**< \brief DSU Registers Address        */
-#define EIC_REGS                         ((eic_registers_t*)0x40002800)                /**< \brief EIC Registers Address        */
-#define EVSYS_REGS                       ((evsys_registers_t*)0x4100e000)              /**< \brief EVSYS Registers Address      */
-#define FREQM_REGS                       ((freqm_registers_t*)0x40002c00)              /**< \brief FREQM Registers Address      */
-#define GCLK_REGS                        ((gclk_registers_t*)0x40001c00)               /**< \brief GCLK Registers Address       */
-#define GMAC_REGS                        ((gmac_registers_t*)0x42000800)               /**< \brief GMAC Registers Address       */
-#define HMATRIX_REGS                     ((hmatrixb_registers_t*)0x4100c000)           /**< \brief HMATRIX Registers Address    */
-#define ICM_REGS                         ((icm_registers_t*)0x42002c00)                /**< \brief ICM Registers Address        */
-#define I2S_REGS                         ((i2s_registers_t*)0x43002800)                /**< \brief I2S Registers Address        */
-#define MCLK_REGS                        ((mclk_registers_t*)0x40000800)               /**< \brief MCLK Registers Address       */
-#define NVMCTRL_REGS                     ((nvmctrl_registers_t*)0x41004000)            /**< \brief NVMCTRL Registers Address    */
-#define OSCCTRL_REGS                     ((oscctrl_registers_t*)0x40001000)            /**< \brief OSCCTRL Registers Address    */
-#define OSC32KCTRL_REGS                  ((osc32kctrl_registers_t*)0x40001400)         /**< \brief OSC32KCTRL Registers Address */
-#define PAC_REGS                         ((pac_registers_t*)0x40000000)                /**< \brief PAC Registers Address        */
-#define PCC_REGS                         ((pcc_registers_t*)0x43002c00)                /**< \brief PCC Registers Address        */
-#define PDEC_REGS                        ((pdec_registers_t*)0x42001c00)               /**< \brief PDEC Registers Address       */
-#define PM_REGS                          ((pm_registers_t*)0x40000400)                 /**< \brief PM Registers Address         */
-#define PORT_REGS                        ((port_registers_t*)0x41008000)               /**< \brief PORT Registers Address       */
-#define QSPI_REGS                        ((qspi_registers_t*)0x42003400)               /**< \brief QSPI Registers Address       */
-#define RAMECC_REGS                      ((ramecc_registers_t*)0x41020000)             /**< \brief RAMECC Registers Address     */
-#define RSTC_REGS                        ((rstc_registers_t*)0x40000c00)               /**< \brief RSTC Registers Address       */
-#define RTC_REGS                         ((rtc_registers_t*)0x40002400)                /**< \brief RTC Registers Address        */
-#define SDHC0_REGS                       ((sdhc_registers_t*)0x45000000)               /**< \brief SDHC0 Registers Address      */
-#define SDHC1_REGS                       ((sdhc_registers_t*)0x46000000)               /**< \brief SDHC1 Registers Address      */
-#define SERCOM0_REGS                     ((sercom_registers_t*)0x40003000)             /**< \brief SERCOM0 Registers Address    */
-#define SERCOM1_REGS                     ((sercom_registers_t*)0x40003400)             /**< \brief SERCOM1 Registers Address    */
-#define SERCOM2_REGS                     ((sercom_registers_t*)0x41012000)             /**< \brief SERCOM2 Registers Address    */
-#define SERCOM3_REGS                     ((sercom_registers_t*)0x41014000)             /**< \brief SERCOM3 Registers Address    */
-#define SERCOM4_REGS                     ((sercom_registers_t*)0x43000000)             /**< \brief SERCOM4 Registers Address    */
-#define SERCOM5_REGS                     ((sercom_registers_t*)0x43000400)             /**< \brief SERCOM5 Registers Address    */
-#define SERCOM6_REGS                     ((sercom_registers_t*)0x43000800)             /**< \brief SERCOM6 Registers Address    */
-#define SERCOM7_REGS                     ((sercom_registers_t*)0x43000c00)             /**< \brief SERCOM7 Registers Address    */
-#define SUPC_REGS                        ((supc_registers_t*)0x40001800)               /**< \brief SUPC Registers Address       */
-#define TC0_REGS                         ((tc_registers_t*)0x40003800)                 /**< \brief TC0 Registers Address        */
-#define TC1_REGS                         ((tc_registers_t*)0x40003c00)                 /**< \brief TC1 Registers Address        */
-#define TC2_REGS                         ((tc_registers_t*)0x4101a000)                 /**< \brief TC2 Registers Address        */
-#define TC3_REGS                         ((tc_registers_t*)0x4101c000)                 /**< \brief TC3 Registers Address        */
-#define TC4_REGS                         ((tc_registers_t*)0x42001400)                 /**< \brief TC4 Registers Address        */
-#define TC5_REGS                         ((tc_registers_t*)0x42001800)                 /**< \brief TC5 Registers Address        */
-#define TC6_REGS                         ((tc_registers_t*)0x43001400)                 /**< \brief TC6 Registers Address        */
-#define TC7_REGS                         ((tc_registers_t*)0x43001800)                 /**< \brief TC7 Registers Address        */
-#define TCC0_REGS                        ((tcc_registers_t*)0x41016000)                /**< \brief TCC0 Registers Address       */
-#define TCC1_REGS                        ((tcc_registers_t*)0x41018000)                /**< \brief TCC1 Registers Address       */
-#define TCC2_REGS                        ((tcc_registers_t*)0x42000c00)                /**< \brief TCC2 Registers Address       */
-#define TCC3_REGS                        ((tcc_registers_t*)0x42001000)                /**< \brief TCC3 Registers Address       */
-#define TCC4_REGS                        ((tcc_registers_t*)0x43001000)                /**< \brief TCC4 Registers Address       */
-#define TRNG_REGS                        ((trng_registers_t*)0x42002800)               /**< \brief TRNG Registers Address       */
-#define USB_REGS                         ((usb_registers_t*)0x41000000)                /**< \brief USB Registers Address        */
-#define WDT_REGS                         ((wdt_registers_t*)0x40002000)                /**< \brief WDT Registers Address        */
+
+extern ac_registers_t AC_REGS_internal;
+extern adc_registers_t ADC0_REGS_internal;
+extern adc_registers_t ADC1_REGS_internal;
+extern aes_registers_t AES_REGS_internal;
+extern can_registers_t CAN0_REGS_internal;
+extern can_registers_t CAN1_REGS_internal;
+extern ccl_registers_t CCL_REGS_internal;
+extern cmcc_registers_t CMCC_REGS_internal;
+extern dac_registers_t DAC_REGS_internal;
+extern dmac_registers_t DMAC_REGS_internal;
+extern dsu_registers_t DSU_REGS_internal;
+extern eic_registers_t EIC_REGS_internal;
+extern evsys_registers_t EVSYS_REGS_internal;
+extern freqm_registers_t FREQM_REGS_internal;
+extern gclk_registers_t GCLK_REGS_internal;
+extern gmac_registers_t GMAC_REGS_internal;
+extern hmatrixb_registers_t HMATRIX_REGS_internal;
+extern icm_registers_t ICM_REGS_internal;
+extern i2s_registers_t I2S_REGS_internal;
+extern mclk_registers_t MCLK_REGS_internal;
+extern nvmctrl_registers_t NVMCTRL_REGS_internal;
+extern oscctrl_registers_t OSCCTRL_REGS_internal;
+extern osc32kctrl_registers_t OSC32KCTRL_REGS_internal;
+extern pac_registers_t PAC_REGS_internal;
+extern pcc_registers_t PCC_REGS_internal;
+extern pdec_registers_t PDEC_REGS_internal;
+extern pm_registers_t PM_REGS_internal;
+extern port_registers_t PORT_REGS_internal;
+extern qspi_registers_t QSPI_REGS_internal;
+extern ramecc_registers_t RAMECC_REGS_internal;
+extern rstc_registers_t RSTC_REGS_internal;
+extern rtc_registers_t RTC_REGS_internal;
+extern sdhc_registers_t SDHC0_REGS_internal;
+extern sdhc_registers_t SDHC1_REGS_internal;
+extern sercom_registers_t SERCOM0_REGS_internal;
+extern sercom_registers_t SERCOM1_REGS_internal;
+extern sercom_registers_t SERCOM2_REGS_internal;
+extern sercom_registers_t SERCOM3_REGS_internal;
+extern sercom_registers_t SERCOM4_REGS_internal;
+extern sercom_registers_t SERCOM5_REGS_internal;
+extern sercom_registers_t SERCOM6_REGS_internal;
+extern sercom_registers_t SERCOM7_REGS_internal;
+extern supc_registers_t SUPC_REGS_internal;
+extern tc_registers_t TC0_REGS_internal;
+extern tc_registers_t TC1_REGS_internal;
+extern tc_registers_t TC2_REGS_internal;
+extern tc_registers_t TC3_REGS_internal;
+extern tc_registers_t TC4_REGS_internal;
+extern tc_registers_t TC5_REGS_internal;
+extern tc_registers_t TC6_REGS_internal;
+extern tc_registers_t TC7_REGS_internal;
+extern tcc_registers_t TCC0_REGS_internal;
+extern tcc_registers_t TCC1_REGS_internal;
+extern tcc_registers_t TCC2_REGS_internal;
+extern tcc_registers_t TCC3_REGS_internal;
+extern tcc_registers_t TCC4_REGS_internal;
+extern trng_registers_t TRNG_REGS_internal;
+extern usb_registers_t USB_REGS_internal;
+extern wdt_registers_t WDT_REGS_internal;
+
+#define AC_REGS (&AC_REGS_internal)
+#define ADC0_REGS (&ADC0_REGS_internal)
+#define ADC1_REGS (&ADC1_REGS_internal)
+#define AES_REGS (&AES_REGS_internal)
+#define CAN0_REGS (&CAN0_REGS_internal)
+#define CAN1_REGS (&CAN1_REGS_internal)
+#define CCL_REGS (&CCL_REGS_internal)
+#define CMCC_REGS (&CMCC_REGS_internal)
+#define DAC_REGS (&DAC_REGS_internal)
+#define DMAC_REGS (&DMAC_REGS_internal)
+#define DSU_REGS (&DSU_REGS_internal)
+#define EIC_REGS (&EIC_REGS_internal)
+#define EVSYS_REGS (&EVSYS_REGS_internal)
+#define FREQM_REGS (&FREQM_REGS_internal)
+#define GCLK_REGS (&GCLK_REGS_internal)
+#define GMAC_REGS (&GMAC_REGS_internal)
+#define HMATRIX_REGS (&HMATRIX_REGS_internal)
+#define ICM_REGS (&ICM_REGS_internal)
+#define I2S_REGS (&I2S_REGS_internal)
+#define MCLK_REGS (&MCLK_REGS_internal)
+#define NVMCTRL_REGS (&NVMCTRL_REGS_internal)
+#define OSCCTRL_REGS (&OSCCTRL_REGS_internal)
+#define OSC32KCTRL_REGS (&OSC32KCTRL_REGS_internal)
+#define PAC_REGS (&PAC_REGS_internal)
+#define PCC_REGS (&PCC_REGS_internal)
+#define PDEC_REGS (&PDEC_REGS_internal)
+#define PM_REGS (&PM_REGS_internal)
+#define PORT_REGS (&PORT_REGS_internal)
+#define QSPI_REGS (&QSPI_REGS_internal)
+#define RAMECC_REGS (&RAMECC_REGS_internal)
+#define RSTC_REGS (&RSTC_REGS_internal)
+#define RTC_REGS (&RTC_REGS_internal)
+#define SDHC0_REGS (&SDHC0_REGS_internal)
+#define SDHC1_REGS (&SDHC1_REGS_internal)
+#define SERCOM0_REGS (&SERCOM0_REGS_internal)
+#define SERCOM1_REGS (&SERCOM1_REGS_internal)
+#define SERCOM2_REGS (&SERCOM2_REGS_internal)
+#define SERCOM3_REGS (&SERCOM3_REGS_internal)
+#define SERCOM4_REGS (&SERCOM4_REGS_internal)
+#define SERCOM5_REGS (&SERCOM5_REGS_internal)
+#define SERCOM6_REGS (&SERCOM6_REGS_internal)
+#define SERCOM7_REGS (&SERCOM7_REGS_internal)
+#define SUPC_REGS (&SUPC_REGS_internal)
+#define TC0_REGS (&TC0_REGS_internal)
+#define TC1_REGS (&TC1_REGS_internal)
+#define TC2_REGS (&TC2_REGS_internal)
+#define TC3_REGS (&TC3_REGS_internal)
+#define TC4_REGS (&TC4_REGS_internal)
+#define TC5_REGS (&TC5_REGS_internal)
+#define TC6_REGS (&TC6_REGS_internal)
+#define TC7_REGS (&TC7_REGS_internal)
+#define TCC0_REGS (&TCC0_REGS_internal)
+#define TCC1_REGS (&TCC1_REGS_internal)
+#define TCC2_REGS (&TCC2_REGS_internal)
+#define TCC3_REGS (&TCC3_REGS_internal)
+#define TCC4_REGS (&TCC4_REGS_internal)
+#define TRNG_REGS (&TRNG_REGS_internal)
+#define USB_REGS (&USB_REGS_internal)
+#define WDT_REGS (&WDT_REGS_internal)
 #endif /* (defined(__ASSEMBLER__) || defined(__IAR_SYSTEMS_ASM__)) */
 /** @}  end of Peripheral Base Address Definitions */
 
@@ -1110,4 +1186,3 @@ void SDHC1_Handler                 ( void );
 
 
 #endif /* _SAME54P20A_H_ */
-

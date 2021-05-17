@@ -6,4 +6,4 @@ ATSAME54 Library
     :hidden:
     :maxdepth: 2
  
-    hal/index
+    design/hal/index
