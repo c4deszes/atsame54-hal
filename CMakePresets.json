@@ -1,0 +1,78 @@
+{
+    "version": 2,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "armgcc-mingw-default",
+            "displayName": "ARM GCC Default",
+            "description": "ARM GCC compiler with MinGW Makefiles",
+            "generator": "MinGW Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/tools/cmake/armgcc-toolchain.cmake"
+            },
+            "hidden": true
+        },
+        {
+            "name": "armgcc-mingw-debug",
+            "displayName": "ARM GCC Debug",
+            "inherits": "armgcc-mingw-default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "hidden": true
+        },
+        {
+            "name": "armgcc-mingw-release",
+            "displayName": "ARM GCC Release",
+            "inherits": "armgcc-mingw-default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            },
+            "hidden": true
+        },
+        {
+            "name": "mingw-default",
+            "displayName": "MinGW GCC Default",
+            "description": "MinGW GCC compiler with MinGW Makefiles",
+            "generator": "MinGW Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/tools/cmake/mingw-toolchain.cmake"
+            },
+            "hidden": true
+        },
+        {
+            "name": "mingw-debug",
+            "displayName": "MinGW GCC Debug",
+            "inherits": [ "mingw-default" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "hidden": true
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "build-example",
+            "targets": [ "atsame54-example" ]
+        },
+        {
+            "name": "build-test",
+            "targets": [ "atsame54-hal-unittest" ]
+        },
+        {
+            "name": "build-docs",
+            "targets": [ "Sphinx" ]
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "all"
+        }
+    ]
+}

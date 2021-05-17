@@ -12,7 +12,7 @@ configure_file(
 
 # Example application
 add_executable(
-    atsame54-example
+    atsame54-example EXCLUDE_FROM_ALL
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.c
     ${GENERATED_METAINFORMATION_SOURCE}
 )
