@@ -28,7 +28,7 @@ jobs:
           cmake --build --preset=armgcc-unix-release-example
 
   unittest:
-    name: Unit test
+    name: Unit Test
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/c4deszes/arm-gcc-docker:v1.0.1
@@ -41,6 +41,10 @@ jobs:
       - name: Configure build
         run: |
           cmake --preset=gcc-debug .
+
+      - name: Configure build
+        run: |
+          cmake --build --preset=gcc-debug
 
       - name: Run unit tests
         run: |

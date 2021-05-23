@@ -1,6 +1,3 @@
-enable_testing()
-include(GoogleTest)
-
 # Hardware Abstraction Layer unit tests
 add_executable(
     atsame54-hal-unittest EXCLUDE_FROM_ALL
