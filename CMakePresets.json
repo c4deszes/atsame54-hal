@@ -7,8 +7,8 @@
     },
     "configurePresets": [
         {
-            "name": "armgcc-mingw-default",
-            "generator": "MinGW Makefiles",
+            "name": "armgcc-unix-default",
+            "generator": "Unix Makefiles",
             "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/tools/cmake/armgcc-toolchain.cmake"
@@ -16,50 +16,14 @@
             "hidden": true
         },
         {
-            "name": "armgcc-mingw-debug",
-            "inherits": "armgcc-mingw-default",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
-            },
-            "hidden": true
-        },
-        {
-            "name": "armgcc-mingw-release",
-            "inherits": "armgcc-mingw-default",
+            "name": "armgcc-unix-release",
+            "inherits": "armgcc-unix-default",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
-            },
-            "hidden": true
-        },
-        {
-            "name": "armgcc-linux-default",
-            "generator": "Unix Makefiles",
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
-                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/tools/cmake/gcc-toolchain.cmake"
-            },
-            "hidden": true
-        },
-        {
-            "name": "armgcc-linux-debug",
-            "inherits": "armgcc-linux-default",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
-            },
-            "hidden": true
-        },
-        {
-            "name": "armgcc-linux-release",
-            "inherits": "armgcc-linux-default",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release"
-            },
-            "hidden": true
+            }
         },
         {
             "name": "mingw-default",
-            "displayName": "MinGW GCC Default",
-            "description": "MinGW GCC compiler with MinGW Makefiles",
             "generator": "MinGW Makefiles",
             "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
@@ -69,31 +33,43 @@
         },
         {
             "name": "mingw-debug",
-            "displayName": "MinGW GCC Debug",
             "inherits": [ "mingw-default" ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "gcc-default",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/tools/cmake/gcc-toolchain.cmake"
             },
             "hidden": true
+        },
+        {
+            "name": "gcc-debug",
+            "inherits": [ "gcc-default" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
         }
     ],
     "buildPresets": [
         {
-            "name": "build-example",
+            "name": "armgcc-unix-release-example",
+            "configurePreset": "armgcc-unix-release",
             "targets": [ "atsame54-example" ]
         },
         {
-            "name": "build-test",
+            "name": "gcc-debug-test",
+            "configurePreset": "gcc-debug",
             "targets": [ "atsame54-hal-unittest" ]
         },
         {
-            "name": "build-docs",
-            "targets": [ "Sphinx" ]
-        }
-    ],
-    "testPresets": [
-        {
-            "name": "all"
+            "name": "mingw-debug-test",
+            "configurePreset": "mingw-debug",
+            "targets": [ "atsame54-hal-unittest" ]
         }
     ]
 }
