@@ -1,9 +1,15 @@
 name: Build
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, edited, synchronize]
 
 jobs:
-  build:
+  example:
+    name: Example
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/c4deszes/arm-gcc-docker:v1.0.1
@@ -13,10 +19,29 @@ jobs:
         with:
           submodules: 'true'
 
-      - name: Configure
+      - name: Configure build
         run: |
           cmake --preset=armgcc-unix-release .
 
-      - name: Build
+      - name: Build example
         run: |
           cmake --build --preset=armgcc-unix-release-example
+
+  unittest:
+    name: Test
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/c4deszes/arm-gcc-docker:v1.0.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+
+      - name: Configure build
+        run: |
+          cmake --preset=gcc-debug .
+
+      - name: Run unit tests
+        run: |
+          cmake --build --preset=gcc-debug-test
