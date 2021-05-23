@@ -8,8 +8,6 @@
     "configurePresets": [
         {
             "name": "armgcc-mingw-default",
-            "displayName": "ARM GCC Default",
-            "description": "ARM GCC compiler with MinGW Makefiles",
             "generator": "MinGW Makefiles",
             "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
@@ -19,7 +17,6 @@
         },
         {
             "name": "armgcc-mingw-debug",
-            "displayName": "ARM GCC Debug",
             "inherits": "armgcc-mingw-default",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -28,8 +25,32 @@
         },
         {
             "name": "armgcc-mingw-release",
-            "displayName": "ARM GCC Release",
             "inherits": "armgcc-mingw-default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            },
+            "hidden": true
+        },
+        {
+            "name": "armgcc-linux-default",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/tools/cmake/gcc-toolchain.cmake"
+            },
+            "hidden": true
+        },
+        {
+            "name": "armgcc-linux-debug",
+            "inherits": "armgcc-linux-default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "hidden": true
+        },
+        {
+            "name": "armgcc-linux-release",
+            "inherits": "armgcc-linux-default",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             },

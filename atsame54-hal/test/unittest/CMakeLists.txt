@@ -3,7 +3,7 @@ include(GoogleTest)
 
 # Hardware Abstraction Layer unit tests
 add_executable(
-    atsame54-hal-unittest
+    atsame54-hal-unittest EXCLUDE_FROM_ALL
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/test_watchdog.cpp
 )

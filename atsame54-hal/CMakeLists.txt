@@ -1,7 +1,5 @@
-project(
-    atsame54-hal
-    VERSION "0.1.0"
-)
+project(atsame54-hal DESCRIPTION "ATSAME54 Hardware Abstraction Layer")
+set(PROJECT_VERSION "0.1.0")
 
 # Hardware Abstraction Layer interface
 add_library(atsame54-hal-api INTERFACE)
