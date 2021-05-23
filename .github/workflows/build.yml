@@ -42,9 +42,9 @@ jobs:
         run: |
           cmake --preset=gcc-debug .
 
-      - name: Configure build
+      - name: Build tests
         run: |
-          cmake --build --preset=gcc-debug
+          cmake --build --preset=gcc-debug-test
 
       - name: Run unit tests
         run: |

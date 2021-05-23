@@ -60,6 +60,11 @@
             "name": "armgcc-unix-release-example",
             "configurePreset": "armgcc-unix-release",
             "targets": [ "atsame54-example" ]
+        },
+        {
+            "name": "gcc-debug-test",
+            "configurePreset": "gcc-debug",
+            "targets": [ "atsame54-hal-unittest" ]
         }
     ],
     "testPresets": [
