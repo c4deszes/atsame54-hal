@@ -1,4 +1,4 @@
-# Compiler configuration for MinGW
+# Compiler configuration for GCC
 SET(CMAKE_SYSTEM_NAME Linux)
 
 SET(CMAKE_C_COMPILER "gcc" CACHE INTERNAL "")

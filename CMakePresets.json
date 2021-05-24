@@ -7,8 +7,7 @@
     },
     "configurePresets": [
         {
-            "name": "armgcc-unix-default",
-            "generator": "Unix Makefiles",
+            "name": "armgcc-default",
             "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/tools/cmake/armgcc-toolchain.cmake"
@@ -16,8 +15,17 @@
             "hidden": true
         },
         {
-            "name": "armgcc-unix-release",
-            "inherits": "armgcc-unix-default",
+            "name": "armgcc-release-unix",
+            "inherits": "armgcc-default",
+            "generator": "Unix Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "armgcc-release-mingw",
+            "inherits": "armgcc-default",
+            "generator": "MinGW Makefiles",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
@@ -57,25 +65,55 @@
     ],
     "buildPresets": [
         {
-            "name": "armgcc-unix-release-example",
-            "configurePreset": "armgcc-unix-release",
-            "targets": [ "atsame54-example" ]
+            "name": "build-example",
+            "targets": [ "atsame54-example" ],
+            "hidden": true
         },
         {
-            "name": "gcc-debug-test",
-            "configurePreset": "gcc-debug",
-            "targets": [ "atsame54-hal-unittest" ]
+            "name": "build-example-unix",
+            "inherits": "build-example",
+            "configurePreset": "armgcc-release-unix"
+        },
+        {
+            "name": "build-example-mingw",
+            "inherits": "build-example",
+            "configurePreset": "armgcc-release-mingw"
+        },
+        {
+            "name": "build-gtest",
+            "targets": [ "atsame54-hal-unittest" ],
+            "hidden": true
+        },
+        {
+            "name": "build-gtest-unix",
+            "inherits": "build-gtest",
+            "configurePreset": "gcc-debug"
+        },
+        {
+            "name": "build-gtest-mingw",
+            "inherits": "build-gtest",
+            "configurePreset": "mingw-debug"
         }
     ],
     "testPresets": [
         {
-            "name": "gcc-gtest-unittest",
-            "configurePreset": "gcc-debug",
+            "name": "test-gtest-unittest",
             "filter": {
                 "include": {
                     "name": "UNITTEST"
                 }
-            }
+            },
+            "hidden": true
+        },
+        {
+            "name": "test-gtest-unittest-unix",
+            "inherits": "test-gtest-unittest",
+            "configurePreset": "gcc-debug"
+        },
+        {
+            "name": "test-gtest-unittest-mingw",
+            "inherits": "test-gtest-unittest",
+            "configurePreset": "mingw-debug"
         }
     ]
 }

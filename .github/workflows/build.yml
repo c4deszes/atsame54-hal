@@ -21,11 +21,11 @@ jobs:
 
       - name: Configure build
         run: |
-          cmake --preset=armgcc-unix-release .
+          cmake --preset=armgcc-release-unix .
 
       - name: Build example
         run: |
-          cmake --build --preset=armgcc-unix-release-example
+          cmake --build --preset=build-example-unix
 
   unittest:
     name: Unit Test
@@ -44,8 +44,8 @@ jobs:
 
       - name: Build tests
         run: |
-          cmake --build --preset=gcc-debug-test
+          cmake --build --preset=build-gtest-unix
 
       - name: Run unit tests
         run: |
-          ctest --preset=gcc-gtest-unittest
+          ctest --preset=test-gtest-unittest-unix
