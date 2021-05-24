@@ -19,6 +19,9 @@ jobs:
         with:
           submodules: 'true'
 
+      - name: GCC Problem Matcher
+        uses: ammaraskar/gcc-problem-matcher@0.1
+
       - name: Configure build
         run: |
           cmake --preset=armgcc-release-unix .
