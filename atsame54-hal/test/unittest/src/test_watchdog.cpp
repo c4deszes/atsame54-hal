@@ -94,6 +94,6 @@ TEST_F(Watchdog, InitializeNormalWithEarlyWarning) {
 
     // Assertions
     EXPECT_EQ(WDT_REGS->WDT_CONFIG, CYC8);
-    EXPECT_EQ(WDT_REGS->WDT_EWCTRL, CYC8);
+    EXPECT_EQ(WDT_REGS->WDT_EWCTRL, CYC16);
     EXPECT_NE((WDT_REGS->WDT_CTRLA | WDT_CTRLA_ENABLE_Msk), 0);
 }

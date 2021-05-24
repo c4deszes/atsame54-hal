@@ -103,6 +103,9 @@
                     "name": "UNITTEST"
                 }
             },
+            "output": {
+                "outputOnFailure": true
+            },
             "hidden": true
         },
         {
