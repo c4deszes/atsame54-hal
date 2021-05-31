@@ -1,7 +1,5 @@
-project(
-    atsame54-core
-    VERSION "1.0.0"
-)
+project(atsame54-core DESCRIPTION "ATSAME54 Core library")
+set(PROJECT_VERSION "1.0.0")
 
 # Core interface
 add_library(atsame54-core-api INTERFACE)

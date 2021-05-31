@@ -1,6 +1,4 @@
-project(
-    atsame54-example
-)
+project(atsame54-example DESCRIPTION "ATSAME54 Example program")
 set(PROJECT_VERSION "1.0.0")
 
 # Generates runtime metainformation

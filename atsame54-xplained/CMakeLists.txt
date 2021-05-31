@@ -1,18 +1,9 @@
-project(
-    atsame54-xplained
-    VERSION "0.1.0"
-)
+project(atsame54-xplained DESCRIPTION "ATSAME54 Xplained Board support library")
+set(PROJECT_VERSION "0.1.0")
 
 # ATSAME54 Xplained Pro board interface
-add_library(
-    atsame54-xplained-api
-    INTERFACE
-)
-target_include_directories(
-    atsame54-xplained-api
-    INTERFACE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
+add_library(atsame54-xplained-api INTERFACE)
+target_include_directories(atsame54-xplained-api INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # ATSAME54 Xplained Pro board implementation
 add_library(

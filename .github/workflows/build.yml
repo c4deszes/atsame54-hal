@@ -1,0 +1,54 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  example:
+    name: Example
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/c4deszes/arm-gcc-docker:v1.0.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+
+      - name: GCC Problem Matcher
+        uses: ammaraskar/gcc-problem-matcher@0.1
+
+      - name: Configure build
+        run: |
+          cmake --preset=armgcc-release-unix .
+
+      - name: Build example
+        run: |
+          cmake --build --preset=build-example-unix
+
+  unittest:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/c4deszes/arm-gcc-docker:v1.0.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+
+      - name: Configure build
+        run: |
+          cmake --preset=gcc-debug .
+
+      - name: Build tests
+        run: |
+          cmake --build --preset=build-gtest-unix
+
+      - name: Run unit tests
+        run: |
+          ctest --preset=test-gtest-unittest-unix
