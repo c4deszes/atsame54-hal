@@ -16,7 +16,8 @@ void OSCCTRL_Initialize(void) {
                 | OSCCTRL_XOSCCTRL_IPTAT(3)
                 | OSCCTRL_XOSCCTRL_XTALEN_Msk
                 | OSCCTRL_XOSCCTRL_ENABLE_Msk;
-    while ((OSCCTRL_REGS->OSCCTRL_STATUS & OSCCTRL_STATUS_XOSCRDY0_Msk) != OSCCTRL_STATUS_XOSCRDY0_Msk) {
+    while ((OSCCTRL_REGS->OSCCTRL_STATUS & OSCCTRL_STATUS_XOSCRDY0_Msk)
+            != OSCCTRL_STATUS_XOSCRDY0_Msk) {
         /* Waiting for the XOSC Ready state */
     }
 }

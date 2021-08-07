@@ -1,6 +1,8 @@
 # Build directory
 build/
 
+ext_docs/
+
 # IDE / User specific configuration
 .vscode/
 CMakeUserPresets.json
@@ -21,7 +23,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/

@@ -61,7 +61,6 @@ TEST_F(Watchdog, InitializeNormalWithoutEarlyWarning) {
  * @brief Local Watchdog interrupt handler
  */
 static void Watchdog_InterruptHandler(void) {
-
 }
 
 /**

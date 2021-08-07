@@ -38,11 +38,14 @@ typedef struct {
     eic_callback callback;
 } eic_nmi_configuration;
 
+/**
+ * @brief 
+ */
 typedef struct {
     eic_clock_source clock_selection;
     uint8_t gclk;
     eic_nmi_configuration nmi;
-    eic_pin_configuration 
+    eic_pin_configuration config; 
 } eic_configuration;
 
 /**

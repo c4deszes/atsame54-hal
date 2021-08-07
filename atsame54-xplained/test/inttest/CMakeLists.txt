@@ -1,14 +1,9 @@
 # Integration tests
 add_executable(
-    atsam54-xplained-inttest
-    $<TARGET_OBJECTS:atsam54-xplained-obj>
-    ${CMAKE_CURRENT_SOURCE_DIR}/main.c
+    atsame54-xplained-inttest EXCLUDE_FROM_ALL
+    src/main.c
+    src/test_user_io.c
 )
-target_link_libraries(
-    atsam54-xplained-inttest
-    PUBLIC
-    atsam54-xplained-obj
-    atsame54-hal-mock
-    unity
-)
-set_target_properties(atsam54-xplained-inttest PROPERTIES SUFFIX ".elf")
+target_include_directories(atsame54-xplained-inttest PRIVATE include)
+target_link_libraries(atsame54-xplained-inttest PUBLIC atsame54-xplained-test atsame54-hal-fake unity)
+add_test(NAME atsame54-xplained-inttest COMMAND atsame54-xplained-inttest)

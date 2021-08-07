@@ -571,6 +571,25 @@ void SDHC1_Handler                 ( void );
 #define __DEVICE_IS_SAM                1
 
 /*
+ * \brief Memory layout
+ */
+#define SAME54P20_ROM_START         0x00000000
+#define SAME54P20_ROM_END           0x00100000
+#define SAME54P20_ROM_SIZE          (SAME54P20_ROM_END - SAME54P20_ROM_START)
+
+#define SAME54P20_RAM_START         0x20000000
+#define SAME54P20_RAM_END           0x20040000
+#define SAME54P20_RAM_SIZE          (SAME54P20_RAM_END - SAME54P20_RAM_START)
+
+#define SAME54P20_BACKUP_RAM_START  0x47000000
+#define SAME54P20_BACKUP_RAM_END    0x47002000
+#define SAME54P20_BACKUP_RAM_SIZE   (SAME54P20_BACKUP_RAM_END - SAME54P20_BACKUP_RAM_START)
+
+#define SAME54P20_QSPI_START        0x04000000
+#define SAME54P20_QSPI_END          0x05000000
+#define SAME54P20_QSPI_SIZE         (SAME54P20_QSPI_END - SAME54P20_QSPI_START)
+
+/*
  * \brief CMSIS includes
  */
 #include "core_cm4.h"

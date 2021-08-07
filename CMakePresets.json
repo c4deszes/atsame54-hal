@@ -80,42 +80,40 @@
             "configurePreset": "armgcc-release-mingw"
         },
         {
-            "name": "build-gtest",
-            "targets": [ "atsame54-hal-unittest" ],
+            "name": "build-test",
+            "targets": [ 
+                "atsame54-hal-unittest",
+                "atsame54-xplained-inttest"
+            ],
             "hidden": true
         },
         {
-            "name": "build-gtest-unix",
-            "inherits": "build-gtest",
+            "name": "build-test-unix",
+            "inherits": "build-test",
             "configurePreset": "gcc-debug"
         },
         {
-            "name": "build-gtest-mingw",
-            "inherits": "build-gtest",
+            "name": "build-test-mingw",
+            "inherits": "build-test",
             "configurePreset": "mingw-debug"
         }
     ],
     "testPresets": [
         {
-            "name": "test-gtest-unittest",
-            "filter": {
-                "include": {
-                    "name": "UNITTEST"
-                }
-            },
+            "name": "test-local",
             "output": {
                 "outputOnFailure": true
             },
             "hidden": true
         },
         {
-            "name": "test-gtest-unittest-unix",
-            "inherits": "test-gtest-unittest",
+            "name": "test-local-unix",
+            "inherits": "test-local",
             "configurePreset": "gcc-debug"
         },
         {
-            "name": "test-gtest-unittest-mingw",
-            "inherits": "test-gtest-unittest",
+            "name": "test-local-mingw",
+            "inherits": "test-local",
             "configurePreset": "mingw-debug"
         }
     ]
