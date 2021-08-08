@@ -47,8 +47,8 @@ jobs:
 
       - name: Build tests
         run: |
-          cmake --build --preset=build-gtest-unix
+          cmake --build --preset=build-test-unix
 
       - name: Run unit tests
         run: |
-          ctest --preset=test-gtest-unittest-unix
+          ctest --preset=unittest-local-unix

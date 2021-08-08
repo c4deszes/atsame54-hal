@@ -3,8 +3,8 @@
  * @author Balazs Eszes
  * @brief User peripheral support
  */
-#ifndef ATSAME54_XPLAINED_INCLUDE_XPLAINED_IO_USER_IO_H_
-#define ATSAME54_XPLAINED_INCLUDE_XPLAINED_IO_USER_IO_H_
+#ifndef ATSAME54_XPLAINED_API_XPLAINED_IO_USER_IO_H_
+#define ATSAME54_XPLAINED_API_XPLAINED_IO_USER_IO_H_
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -53,4 +53,4 @@ void Xplained_UserButton_Initialize(void);
  */
 bool Xplained_UserButton_Read(void);
 
-#endif  // ATSAME54_XPLAINED_INCLUDE_XPLAINED_IO_USER_IO_H_
+#endif  // ATSAME54_XPLAINED_API_XPLAINED_IO_USER_IO_H_

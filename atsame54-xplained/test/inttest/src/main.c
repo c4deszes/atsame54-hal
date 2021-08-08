@@ -4,7 +4,7 @@
 
 void setUp(void) {
     // set stuff up here
-    //GPIO_Initialize();
+    // GPIO_Initialize();
 }
 
 void tearDown(void) {

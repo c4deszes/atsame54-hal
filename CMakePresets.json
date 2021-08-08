@@ -100,20 +100,25 @@
     ],
     "testPresets": [
         {
-            "name": "test-local",
+            "name": "unittest-local",
+            "filter": {
+                "include": {
+                    "name": "unittest"
+                }
+            },
             "output": {
                 "outputOnFailure": true
             },
             "hidden": true
         },
         {
-            "name": "test-local-unix",
-            "inherits": "test-local",
+            "name": "unittest-local-unix",
+            "inherits": "unittest-local",
             "configurePreset": "gcc-debug"
         },
         {
-            "name": "test-local-mingw",
-            "inherits": "test-local",
+            "name": "unittest-local-mingw",
+            "inherits": "unittest-local",
             "configurePreset": "mingw-debug"
         }
     ]

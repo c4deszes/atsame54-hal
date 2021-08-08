@@ -1,6 +1,10 @@
 #ifndef RSTC_H_
 #define RSTC_H_
 
+/**
+ * @brief 
+ * 
+ */
 typedef enum {
     RSTC_CAUSE_INVALID,
     RSTC_CAUSE_BACKUP_HIBERNATE,

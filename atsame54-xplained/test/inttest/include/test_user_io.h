@@ -1,5 +1,5 @@
-#ifndef TEST_USER_IO_H_
-#define TEST_USER_IO_H_
+#ifndef ATSAME54_XPLAINED_TEST_INTTEST_INCLUDE_TEST_USER_IO_H_
+#define ATSAME54_XPLAINED_TEST_INTTEST_INCLUDE_TEST_USER_IO_H_
 
 extern void test_UserLedShouldInitializeCorrectlyInDigitalMode(void);
 
@@ -15,4 +15,4 @@ extern void test_UserButtonReadShouldReturnTrueWhenPinIsHigh(void);
 
 extern void test_UserButtonReadShouldReturnFalseWhenPinIsLow(void);
 
-#endif // TEST_USER_IO_H_
+#endif  // ATSAME54_XPLAINED_TEST_INTTEST_INCLUDE_TEST_USER_IO_H_
