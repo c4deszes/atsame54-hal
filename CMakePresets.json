@@ -31,6 +31,22 @@
             }
         },
         {
+            "name": "armgcc-debug-unix",
+            "inherits": "armgcc-default",
+            "generator": "Unix Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "armgcc-debug-mingw",
+            "inherits": "armgcc-default",
+            "generator": "MinGW Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
             "name": "mingw-default",
             "generator": "MinGW Makefiles",
             "binaryDir": "${sourceDir}/build/${presetName}",
@@ -66,7 +82,7 @@
     "buildPresets": [
         {
             "name": "build-example",
-            "targets": [ "atsame54-example" ],
+            "targets": [ "atsame54-example", "atsame54-example-extras" ],
             "hidden": true
         },
         {
@@ -81,9 +97,10 @@
         },
         {
             "name": "build-test",
-            "targets": [ 
+            "targets": [
                 "atsame54-hal-unittest",
-                "atsame54-xplained-inttest"
+                "atsame54-xplained-inttest",
+                "atsame54-example-unittest"
             ],
             "hidden": true
         },
@@ -104,6 +121,18 @@
             "filter": {
                 "include": {
                     "name": "unittest"
+                }
+            },
+            "output": {
+                "outputOnFailure": true
+            },
+            "hidden": true
+        },
+        {
+            "name": "inttest-local",
+            "filter": {
+                "include": {
+                    "name": "inttest"
                 }
             },
             "output": {

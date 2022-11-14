@@ -5,7 +5,7 @@ add_executable(
     src/test_rstc.cpp
     src/test_tcc.cpp
     src/test_trng.cpp
-    src/test_watchdog.cpp
+    src/test_wdt.cpp
 )
 target_link_libraries(atsame54-hal-unittest PUBLIC atsame54-hal-test gtest gtest-util)
 gtest_discover_tests(

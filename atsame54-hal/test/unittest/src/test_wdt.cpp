@@ -8,7 +8,7 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-    #include "hal/system/watchdog.h"
+    #include "hal/system/wdt.h"
     #include "device/same54p20a.h"
 }
 
@@ -21,9 +21,9 @@ protected:
      * @brief Resets the watchdog peripheral
      */
     void SetUp() override {
-        WDT_REGS->WDT_CONFIG = 0;
-        WDT_REGS->WDT_CTRLA = 0;
-        WDT_REGS->WDT_EWCTRL = 0;
+        WDT_REGS->WDT_CONFIG = WDT_CONFIG_RESETVALUE;
+        WDT_REGS->WDT_CTRLA = WDT_CTRLA_RESETVALUE;
+        WDT_REGS->WDT_EWCTRL = WDT_EWCTRL_RESETVALUE;
     }
 };
 

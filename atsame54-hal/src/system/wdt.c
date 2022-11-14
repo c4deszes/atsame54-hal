@@ -3,7 +3,7 @@
  * @author Balazs Eszes
  * @brief Watchdog implementation
  */
-#include "hal/system/watchdog.h"
+#include "hal/system/wdt.h"
 
 #include <stddef.h>
 #include "device/same54p20a.h"

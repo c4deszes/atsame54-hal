@@ -12,12 +12,13 @@ set(
     SOURCES
     src/system/clock.c
     src/system/mcu.c
-    src/system/watchdog.c
+    src/system/wdt.c
     src/io/eic.c
     src/io/gpio.c
     src/complex/pdec.c
     src/complex/rstc.c
     src/complex/rtc.c
+    src/complex/tc.c
     src/complex/tcc.c
     src/complex/trng.c
 )
