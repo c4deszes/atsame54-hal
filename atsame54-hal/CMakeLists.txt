@@ -18,7 +18,6 @@ set(
     src/complex/pdec.c
     src/complex/rstc.c
     src/complex/rtc.c
-    src/complex/tc.c
     src/complex/tcc.c
     src/complex/trng.c
 )
