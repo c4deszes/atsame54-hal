@@ -30,7 +30,6 @@ void Xplained_UserLed_InitializeDigital(void) {
 }
 
 void Xplained_UserLed_InitializePwm(void) {
-
 }
 
 void Xplained_UserLed_On(void) {

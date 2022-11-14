@@ -4,3 +4,9 @@
 [submodule "lib/googletest"]
 	path = lib/googletest
 	url = https://github.com/google/googletest.git
+[submodule "lib/threadx"]
+	path = lib/threadx
+	url = https://github.com/azure-rtos/threadx.git
+[submodule "tools/cmake/pytest"]
+	path = tools/cmake/pytest
+	url = https://github.com/c4deszes/cmake-pytest-module.git

@@ -201,7 +201,7 @@ void SDHC1_Handler        ( void ) __attribute__ ((weak, alias("Dummy_Handler"))
 
 /* Exception Table */
 __attribute__ ((section(".vectors")))
-const DeviceVectors exception_table = {
+const DeviceVectors _vectors = {
 
         /* Configure Initial Stack Pointer, using linker-generated symbols */
         .pvStack = (void*) (&_estack),

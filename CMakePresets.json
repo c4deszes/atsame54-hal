@@ -31,6 +31,22 @@
             }
         },
         {
+            "name": "armgcc-debug-unix",
+            "inherits": "armgcc-default",
+            "generator": "Unix Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "armgcc-debug-mingw",
+            "inherits": "armgcc-default",
+            "generator": "MinGW Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
             "name": "mingw-default",
             "generator": "MinGW Makefiles",
             "binaryDir": "${sourceDir}/build/${presetName}",
@@ -66,7 +82,7 @@
     "buildPresets": [
         {
             "name": "build-example",
-            "targets": [ "atsame54-example" ],
+            "targets": [ "atsame54-example", "atsame54-example-extras" ],
             "hidden": true
         },
         {
@@ -80,27 +96,30 @@
             "configurePreset": "armgcc-release-mingw"
         },
         {
-            "name": "build-gtest",
-            "targets": [ "atsame54-hal-unittest" ],
+            "name": "build-test",
+            "targets": [
+                "atsame54-hal-unittest",
+                "atsame54-xplained-inttest"
+            ],
             "hidden": true
         },
         {
-            "name": "build-gtest-unix",
-            "inherits": "build-gtest",
+            "name": "build-test-unix",
+            "inherits": "build-test",
             "configurePreset": "gcc-debug"
         },
         {
-            "name": "build-gtest-mingw",
-            "inherits": "build-gtest",
+            "name": "build-test-mingw",
+            "inherits": "build-test",
             "configurePreset": "mingw-debug"
         }
     ],
     "testPresets": [
         {
-            "name": "test-gtest-unittest",
+            "name": "unittest-local",
             "filter": {
                 "include": {
-                    "name": "UNITTEST"
+                    "name": "unittest"
                 }
             },
             "output": {
@@ -109,13 +128,25 @@
             "hidden": true
         },
         {
-            "name": "test-gtest-unittest-unix",
-            "inherits": "test-gtest-unittest",
+            "name": "inttest-local",
+            "filter": {
+                "include": {
+                    "name": "inttest"
+                }
+            },
+            "output": {
+                "outputOnFailure": true
+            },
+            "hidden": true
+        },
+        {
+            "name": "unittest-local-unix",
+            "inherits": "unittest-local",
             "configurePreset": "gcc-debug"
         },
         {
-            "name": "test-gtest-unittest-mingw",
-            "inherits": "test-gtest-unittest",
+            "name": "unittest-local-mingw",
+            "inherits": "unittest-local",
             "configurePreset": "mingw-debug"
         }
     ]

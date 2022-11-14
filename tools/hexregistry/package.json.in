@@ -1,0 +1,14 @@
+{
+    "id": "@PROJECT_NAME@",
+    "name": "@PROJECT_NAME@",
+    "description": "@PROJECT_DESCRIPTION@",
+    "version": "@PROJECT_VERSION@",
+    "variant": "@PROJECT_VARIANT@",
+    "url": "@CMAKE_PROJECT_HOMEPAGE_URL@",
+    "authors": "@CMAKE_PROJECT_AUTHORS@",
+    "artifacts": [
+        {
+            "file": "@PACKAGE_STRING@.hex"
+        }
+    ]
+}
