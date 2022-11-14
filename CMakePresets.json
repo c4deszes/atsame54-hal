@@ -99,8 +99,7 @@
             "name": "build-test",
             "targets": [
                 "atsame54-hal-unittest",
-                "atsame54-xplained-inttest",
-                "atsame54-example-unittest"
+                "atsame54-xplained-inttest"
             ],
             "hidden": true
         },
